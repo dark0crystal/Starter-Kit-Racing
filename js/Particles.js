@@ -73,9 +73,7 @@ export class SmokeTrails {
 
 			p.sprite.position.addScaledVector( p.velocity, dt );
 
-			// Alpha curve: 0 → 1 (at midlife) → 0 (matching Godot's alpha_curve)
-			const alpha = t < 0.5 ? t * 2 : ( 1 - t ) * 2;
-			p.sprite.material.opacity = alpha;
+			p.sprite.material.opacity = ( 1 - t ) * 0.5;
 
 			// Scale curve: 0.5 → 1.0 (at midlife) → 0.2 (matching Godot's scale_curve)
 			let scaleFactor;

@@ -10,6 +10,7 @@ import { Controls } from './Controls.js';
 import { buildTrack, decodeCells, computeSpawnPosition, computeTrackBounds } from './Track.js';
 import { buildWallColliders, createSphereBody } from './Physics.js';
 import { SmokeTrails } from './Particles.js';
+import { DriftMarks } from './DriftMarks.js';
 import { GameAudio } from './Audio.js';
 
 
@@ -210,6 +211,7 @@ async function init() {
 	const controls = new Controls();
 
 	const particles = new SmokeTrails( scene );
+	const driftMarks = new DriftMarks( scene );
 
 	const audio = new GameAudio();
 	audio.init( cam.camera );
@@ -254,6 +256,7 @@ async function init() {
 
 		cam.update( dt, vehicle.spherePos );
 		particles.update( dt, vehicle );
+		driftMarks.update( dt, vehicle );
 		audio.update( dt, vehicle.linearSpeed / MAX_SPEED, input.z, vehicle.driftIntensity );
 
 		renderer.render( scene, cam.camera );
