@@ -12,6 +12,7 @@ const _up = new THREE.Vector3( 0, 1, 0 );
 
 const SPEED_SCALE = 12.5;
 const LINEAR_DAMP = 0.1;
+export const MAX_SPEED = 1.5;
 
 function lerpAngle( a, b, t ) {
 
@@ -111,7 +112,7 @@ export class Vehicle {
 			const cross = _forward.x * this.inputZ - _forward.z * this.inputX;
 			this.inputX = - cross * 2;
 
-			this.linearSpeed = THREE.MathUtils.lerp( this.linearSpeed, 1, dt * 6 );
+			this.linearSpeed = THREE.MathUtils.lerp( this.linearSpeed, MAX_SPEED, dt * 1.5 );
 
 		} else {
 
@@ -138,7 +139,7 @@ export class Vehicle {
 
 			} else {
 
-				this.linearSpeed = THREE.MathUtils.lerp( this.linearSpeed, targetSpeed, dt * 6 );
+				this.linearSpeed = THREE.MathUtils.lerp( this.linearSpeed, targetSpeed * MAX_SPEED, dt * 1.5 );
 
 			}
 
